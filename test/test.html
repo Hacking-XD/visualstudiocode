@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rennspiel</title>
+  <style>
+    #game-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      border: 1px solid black;
+    }
+    #car {
+      position: absolute;
+      left: 180px;
+      bottom: 0;
+      width: 40px;
+      height: 80px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rennspiel</h1>
+
+  <div id="game-container">
+    <div id="car"></div>
+  </div>
+
+  <script>
+    const car = document.getElementById('car');
+    const gameContainer = document.getElementById('game-container');
+    const containerWidth = gameContainer.offsetWidth;
+    const carWidth = car.offsetWidth;
+    const moveStep = 10;
+
+    let carPosition = containerWidth / 2 - carWidth / 2;
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        moveCarLeft();
+      } else if (event.key === 'ArrowRight') {
+        moveCarRight();
+      }
+    });
+
+    function moveCarLeft() {
+      if (carPosition > 0) {
+        carPosition -= moveStep;
+        car.style.left = carPosition + 'px';
+      }
+    }
+
+    function moveCarRight() {
+      if (carPosition < containerWidth - carWidth) {
+        carPosition += moveStep;
+        car.style.left = carPosition + 'px';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="calculator">
+
+      <button onclick="appendCharacter('0')">0</button>
+      <button onclick="appendCharacter('1')">1</button>
+      <button onclick="appendCharacter('2')">2</button>
+      <button onclick="appendCharacter('3')">3</button>
+      <button onclick="appendCharacter('4')">4</button>
+      <button onclick="appendCharacter('5')">5</button>
+      <button onclick="appendCharacter('6')">6</button>
+      <button onclick="appendCharacter('7')">7</button>
+      <button onclick="appendCharacter('8')">8</button>
+      <button onclick="appendCharacter('9')">9</button>
+      <button onclick="appendCharacter('+')">+</button>
+      <button onclick="appendCharacter('-')">-</button>
+      <button onclick="appendCharacter('/')">/</button>
+      <button onclick="appendCharacter('*')">*</button>
+      <button onclick="clearScreen()">Clear</button>
+      <button onclick="deleteCharacter()">del</button>
+      <button onclick="calculate()">=</button>
+
+      <input id="screen" type="text">
+
+    </div>
+    <script>
+      const screen = document.getElementById('screen');
+
+      function appendCharacter(character) {
+        screen.value += character;
+      }
+
+      function clearScreen() {
+        screen.value = '';
+      }
+
+      function deleteCharacter() {
+        screen.value = screen.value.slice(0, -1);
+      }
+
+      function calculate() {
+        let result;
+        try {
+          result = eval(screen.value);
+          if (Number.isNaN(result) || !Number.isFinite(result)) {
+            result = 'Error';
+          }
+        } catch (error) {
+          result = 'Error';
+        }
+        screen.value = result;
+      }
+    </script>
+  </body>
+</html>
